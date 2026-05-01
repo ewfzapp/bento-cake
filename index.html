@@ -73,12 +73,19 @@
     }
 
     .logo-wrap {
+      width: min(240px, 65vw);
+      height: min(240px, 65vw);
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(233,30,140,.35);
+      border: 4px solid rgba(255,255,255,.6);
       animation: fadeDown .9s ease both;
     }
     .logo-img {
-      width: min(240px, 65vw);
-      border-radius: 50%;
-      box-shadow: 0 8px 40px rgba(233,30,140,.35);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
     }
 
     .hero-title {
