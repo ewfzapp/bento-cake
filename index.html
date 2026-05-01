@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bento Cake & Cupcakes Maison – Lyon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@600;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --rose-pale:    #fce4ec;
+      --rose-doux:    #f8bbd0;
+      --rose-vif:     #e91e8c;
+      --rose-chaud:   #d81b60;
+      --violet:       #9c27b0;
+      --violet-clair: #e1bee7;
+      --bordeaux:     #3b0a24;
+      --creme:        #fff8f9;
+      --blanc:        #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--creme);
+      color: var(--bordeaux);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 30%, #e1bee7 60%, #ce93d8 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem 1rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(233,30,140,.15) 0%, transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(156,39,176,.18) 0%, transparent 45%);
+      pointer-events: none;
+    }
+
+    /* floating hearts */
+    .hearts-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .heart-float {
+      position: absolute;
+      font-size: 1.4rem;
+      opacity: 0;
+      animation: floatUp 6s ease-in-out infinite;
+    }
+    @keyframes floatUp {
+      0%   { opacity: 0; transform: translateY(0) scale(.8) rotate(-10deg); }
+      20%  { opacity: .6; }
+      100% { opacity: 0; transform: translateY(-80vh) scale(1.2) rotate(15deg); }
+    }
+
+    .logo-wrap {
+      animation: fadeDown .9s ease both;
+    }
+    .logo-img {
+      width: min(240px, 65vw);
+      border-radius: 50%;
+      box-shadow: 0 8px 40px rgba(233,30,140,.35);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 8vw, 4.2rem);
+      font-weight: 700;
+      color: var(--bordeaux);
+      margin-top: 1.4rem;
+      line-height: 1.15;
+      animation: fadeDown .9s .2s ease both;
+    }
+    .hero-title span {
+      color: var(--rose-vif);
+      font-style: italic;
+    }
+
+    .hero-sub {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(1.2rem, 4vw, 1.9rem);
+      color: var(--violet);
+      margin-top: .4rem;
+      animation: fadeDown .9s .4s ease both;
+    }
+
+    .hero-tagline {
+      margin-top: 1.2rem;
+      font-size: .95rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--bordeaux);
+      opacity: .75;
+      animation: fadeDown .9s .6s ease both;
+    }
+
+    .hero-cta {
+      margin-top: 2.2rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeDown .9s .8s ease both;
+    }
+    .btn {
+      padding: .85rem 2rem;
+      border-radius: 60px;
+      font-family: 'Jost', sans-serif;
+      font-size: .95rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(233,30,140,.35); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--rose-vif), var(--violet));
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(233,30,140,.4);
+    }
+    .btn-outline {
+      background: rgba(255,255,255,.7);
+      color: var(--bordeaux);
+      border: 1.5px solid var(--rose-vif);
+      backdrop-filter: blur(8px);
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── WAVE ── */
+    .wave { line-height: 0; }
+    .wave svg { display: block; width: 100%; }
+
+    /* ── SECTION BASE ── */
+    section { padding: 5rem 1.5rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      text-align: center;
+      font-size: .75rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--violet);
+      font-weight: 500;
+    }
+    .section-title {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      color: var(--bordeaux);
+      margin-top: .4rem;
+    }
+    .section-title em {
+      color: var(--rose-vif);
+      font-style: italic;
+    }
+    .divider {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--rose-vif), var(--violet));
+      border-radius: 4px;
+      margin: 1rem auto 3rem;
+    }
+
+    /* ── PRODUITS ── */
+    .produits-bg {
+      background: #fff;
+    }
+    .produits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .produit-card {
+      background: linear-gradient(160deg, var(--rose-pale), var(--violet-clair));
+      border-radius: 24px;
+      padding: 2.4rem 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .produit-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(233,30,140,.2);
+    }
+    .produit-card::before {
+      content: '';
+      position: absolute;
+      top: -30px; right: -30px;
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.3);
+    }
+    .produit-icon { font-size: 2.4rem; margin-bottom: 1rem; }
+    .produit-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--bordeaux);
+    }
+    .produit-flavors {
+      list-style: none;
+      margin-top: 1rem;
+    }
+    .produit-flavors li {
+      padding: .35rem 0;
+      font-size: .92rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      color: var(--bordeaux);
+    }
+    .produit-flavors li::before {
+      content: '♥';
+      color: var(--rose-vif);
+      font-size: .75rem;
+      flex-shrink: 0;
+    }
+    .prix-badge {
+      margin-top: 1.6rem;
+      display: inline-flex;
+      align-items: baseline;
+      gap: .3rem;
+      background: linear-gradient(135deg, var(--rose-vif), var(--violet));
+      color: #fff;
+      padding: .6rem 1.4rem;
+      border-radius: 50px;
+    }
+    .prix-badge .montant {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    .prix-badge .label-prix { font-size: .8rem; opacity: .85; }
+
+    /* ── PERSONNALISATION ── */
+    .perso-bg {
+      background: linear-gradient(135deg, #fce4ec 0%, #e1bee7 100%);
+    }
+    .perso-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .perso-card {
+      background: rgba(255,255,255,.6);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border: 1px solid rgba(233,30,140,.2);
+      transition: background .3s, transform .3s;
+    }
+    .perso-card:hover { background: rgba(255,255,255,.85); transform: scale(1.04); }
+    .perso-card .icon { font-size: 2.2rem; margin-bottom: .8rem; }
+    .perso-card h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--bordeaux); }
+    .perso-card p { font-size: .85rem; color: var(--bordeaux); opacity: .7; margin-top: .3rem; }
+
+    /* ── GALERIE ── */
+    .galerie-bg { background: #fff; }
+    .galerie-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+    .galerie-item {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 4/5;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0,0,0,.1);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .galerie-item:hover { transform: scale(1.03); box-shadow: 0 12px 40px rgba(233,30,140,.25); }
+    .galerie-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .galerie-item .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(59,10,36,.5), transparent);
+      opacity: 0;
+      transition: opacity .3s;
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem;
+    }
+    .galerie-item:hover .overlay { opacity: 1; }
+    .overlay span {
+      color: #fff;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.2rem;
+    }
+
+    /* ── COMMANDE / LIVRAISON ── */
+    .infos-bg { background: linear-gradient(135deg, #fce4ec, #e1bee7); }
+    .infos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    .info-card {
+      background: rgba(255,255,255,.65);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,.8);
+    }
+    .info-card .icon { font-size: 2.2rem; }
+    .info-card h3 { font-family: 'Playfair Display', serif; font-size: 1rem; margin: .6rem 0 .3rem; color: var(--bordeaux); }
+    .info-card p { font-size: .88rem; color: var(--bordeaux); opacity: .75; line-height: 1.5; }
+
+    /* ── CONTACT ── */
+    .contact-bg { background: #fff; }
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.2rem 2rem;
+      border-radius: 60px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      font-size: .95rem;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .contact-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,.2); }
+    .contact-card .cicon { font-size: 1.6rem; }
+    .cc-insta   { background: linear-gradient(135deg,#f9ce34,#ee2a7b,#6228d7); }
+    .cc-whatsapp{ background: #25D366; }
+    .cc-snapchat{ background: #FFFC00; color: #000; }
+    .cc-tiktok  { background: #010101; }
+    .cc-phone   { background: linear-gradient(135deg, var(--rose-vif), var(--violet)); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bordeaux);
+      color: rgba(255,255,255,.7);
+      text-align: center;
+      padding: 2.5rem 1rem;
+      font-size: .85rem;
+    }
+    footer strong { color: var(--rose-doux); }
+    footer .heart { color: var(--rose-vif); }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: .9rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(16px);
+      background: rgba(252,228,236,.75);
+      border-bottom: 1px solid rgba(233,30,140,.12);
+      transition: background .3s;
+    }
+    .nav-brand {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.3rem;
+      color: var(--bordeaux);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: .88rem;
+      font-weight: 500;
+      color: var(--bordeaux);
+      text-decoration: none;
+      letter-spacing: .05em;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--rose-vif); }
+    @media(max-width:600px){
+      .nav-links { display: none; }
+    }
+
+    /* scrolling ribbon */
+    .ribbon {
+      background: linear-gradient(90deg, var(--rose-vif), var(--violet), var(--rose-vif));
+      background-size: 200%;
+      animation: ribbonMove 4s linear infinite;
+      color: #fff;
+      font-size: .8rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      padding: .5rem;
+      text-align: center;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    @keyframes ribbonMove { 0%{background-position:0%} 100%{background-position:200%} }
+
+    /* lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.85);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 16px;
+      object-fit: contain;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+      background: none;
+      border: none;
+      line-height: 1;
+    }
+  </style>
+</head>
+<body>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close">✕</button>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">🎂 Bento Cake & Cupcakes</a>
+  <ul class="nav-links">
+    <li><a href="#produits">Nos Produits</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#commande">Commander</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- RIBBON -->
+<div class="ribbon" style="margin-top:56px;">
+  ♥ Fait maison avec amour &nbsp;✦&nbsp; Bento Cake 15€ – Offre de lancement &nbsp;✦&nbsp; Cupcakes boîte 6 : 18€ &nbsp;✦&nbsp; Commande 24/48h à l'avance &nbsp;✦&nbsp; Livraison Lyon &nbsp;✦&nbsp;
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hearts-bg" id="hearts"></div>
+
+  <div class="logo-wrap">
+    <img class="logo-img" src="logo.jpeg" alt="Logo Bento Cake & Cupcakes Maison">
+  </div>
+
+  <h1 class="hero-title">Bento Cake<br><span>& Cupcakes</span></h1>
+  <p class="hero-sub">Maison ♡</p>
+  <p class="hero-tagline">Des gâteaux personnalisés pour toutes vos occasions</p>
+
+  <div class="hero-cta">
+    <a href="#commande" class="btn btn-primary">🎀 Commander</a>
+    <a href="#galerie" class="btn btn-outline">✨ Voir la galerie</a>
+  </div>
+</section>
+
+<div class="wave">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#ffffff"/>
+  </svg>
+</div>
+
+<!-- PRODUITS -->
+<section class="produits-bg" id="produits">
+  <div class="container">
+    <p class="section-label">Notre menu</p>
+    <h2 class="section-title">Nos <em>créations</em></h2>
+    <div class="divider"></div>
+
+    <div class="produits-grid">
+      <!-- BENTO CAKE -->
+      <div class="produit-card">
+        <div class="produit-icon">🎂</div>
+        <h3 class="produit-name">Bento Cake</h3>
+        <ul class="produit-flavors">
+          <li>Chocolat</li>
+          <li>Fraise</li>
+          <li>Framboise ou Fruits rouges</li>
+          <li>Exotique (Mangue, Passion)</li>
+        </ul>
+        <div class="prix-badge">
+          <span class="montant">15€</span>
+          <span class="label-prix">offre de lancement</span>
+        </div>
+      </div>
+
+      <!-- CUPCAKES -->
+      <div class="produit-card">
+        <div class="produit-icon">🧁</div>
+        <h3 class="produit-name">Cupcakes</h3>
+        <ul class="produit-flavors">
+          <li>Chocolat</li>
+          <li>Vanille</li>
+          <li>Fruits rouges</li>
+          <li>Caramel (Spéculos)</li>
+        </ul>
+        <div style="margin-top:1.6rem; display:flex; gap:.8rem; flex-wrap:wrap;">
+          <div class="prix-badge">
+            <span class="montant">18€</span>
+            <span class="label-prix">boîte de 6</span>
+          </div>
+          <div class="prix-badge" style="background:linear-gradient(135deg,#9c27b0,#e91e8c)">
+            <span class="montant">30€</span>
+            <span class="label-prix">boîte de 12</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONNALISATION -->
+<section class="perso-bg" id="perso">
+  <div class="container">
+    <p class="section-label">Sur mesure</p>
+    <h2 class="section-title">La <em>personnalisation</em></h2>
+    <div class="divider"></div>
+
+    <div class="perso-grid">
+      <div class="perso-card">
+        <div class="icon">💌</div>
+        <h3>Prénom / Message</h3>
+        <p>Un mot doux écrit avec soin</p>
+      </div>
+      <div class="perso-card">
+        <div class="icon">🎨</div>
+        <h3>Couleurs au choix</h3>
+        <p>Assortis à votre événement</p>
+      </div>
+      <div class="perso-card">
+        <div class="icon">🎁</div>
+        <h3>Thème ciblé</h3>
+        <p>Anniversaire, mariage, naissance…</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section class="galerie-bg" id="galerie">
+  <div class="container">
+    <p class="section-label">Nos réalisations</p>
+    <h2 class="section-title">La <em>galerie</em></h2>
+    <div class="divider"></div>
+
+    <div class="galerie-grid">
+      <div class="galerie-item" onclick="openLightbox('WhatsApp_Image_2026-04-30_at_18_40_03.jpeg')">
+        <img src="WhatsApp_Image_2026-04-30_at_18_40_03.jpeg" alt="Bento cake Happy Birthday">
+        <div class="overlay"><span>Bento Cake ♥</span></div>
+      </div>
+      <div class="galerie-item" onclick="openLightbox('WhatsApp_Image_2026-04-30_at_18_40_04.jpeg')">
+        <img src="WhatsApp_Image_2026-04-30_at_18_40_04.jpeg" alt="Bento cake créations">
+        <div class="overlay"><span>Créations maison ♥</span></div>
+      </div>
+      <div class="galerie-item" onclick="openLightbox('WhatsApp_Image_2026-04-30_at_18_40_04__1_.jpeg')">
+        <img src="WhatsApp_Image_2026-04-30_at_18_40_04__1_.jpeg" alt="Bento cake décoré">
+        <div class="overlay"><span>Fait avec amour ♥</span></div>
+      </div>
+      <div class="galerie-item" onclick="openLightbox('WhatsApp_Image_2026-04-30_at_18_40_04__2_.jpeg')">
+        <img src="WhatsApp_Image_2026-04-30_at_18_40_04__2_.jpeg" alt="Cupcakes artisanaux">
+        <div class="overlay"><span>Cupcakes ♥</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFOS COMMANDE -->
+<section class="infos-bg" id="commande">
+  <div class="container">
+    <p class="section-label">Pratique</p>
+    <h2 class="section-title">Comment <em>commander</em> ?</h2>
+    <div class="divider"></div>
+
+    <div class="infos-grid">
+      <div class="info-card">
+        <div class="icon">📅</div>
+        <h3>Sur commande</h3>
+        <p>24 à 48h à l'avance</p>
+      </div>
+      <div class="info-card">
+        <div class="icon">🤝</div>
+        <h3>Remise en main propre</h3>
+        <p>Disponible sur place</p>
+      </div>
+      <div class="info-card">
+        <div class="icon">🚗</div>
+        <h3>Livraison Lyon</h3>
+        <p>En supplément</p>
+      </div>
+      <div class="info-card">
+        <div class="icon">💬</div>
+        <h3>Contactez-nous</h3>
+        <p>WhatsApp ou réseaux sociaux</p>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:3rem;">
+      <a href="https://wa.me/33777707627" class="btn btn-primary" target="_blank">💬 Passer commande sur WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-bg" id="contact">
+  <div class="container">
+    <p class="section-label">Retrouvez-nous</p>
+    <h2 class="section-title">Nos <em>réseaux</em></h2>
+    <div class="divider"></div>
+
+    <div class="contact-grid">
+      <a href="https://www.instagram.com/bento.cakes.lyon" target="_blank" class="contact-card cc-insta">
+        <span class="cicon">📸</span> Instagram @bento.cakes.lyon
+      </a>
+      <a href="https://wa.me/33777707627" target="_blank" class="contact-card cc-whatsapp">
+        <span class="cicon">💬</span> WhatsApp 07 77 70 76 27
+      </a>
+      <a href="https://www.snapchat.com/add/bentocakeslyon?share_id=CC101XR4SNmQzwyN_lAeSA&locale=fr_FR" target="_blank" class="contact-card cc-snapchat">
+        <span class="cicon">👻</span> Snapchat bentocakeslyon
+      </a>
+      <a href="https://www.tiktok.com/@bento.cakes.lyon" target="_blank" class="contact-card cc-tiktok">
+        <span class="cicon">🎵</span> TikTok @bento.cakes.lyon
+      </a>
+      <a href="tel:+33777707627" class="contact-card cc-phone">
+        <span class="cicon">📞</span> 07 77 70 76 27
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Made with <span class="heart">♥</span> — <strong>Bento Cake & Cupcakes Maison</strong> · Lyon</p>
+  <p style="margin-top:.5rem;font-size:.78rem;">Fait maison avec amour · Gâteaux personnalisés pour toutes vos occasions</p>
+</footer>
+
+<script>
+  // Floating hearts
+  const container = document.getElementById('hearts');
+  const symbols = ['♥','♡','💕','🌸','✨'];
+  for(let i=0;i<18;i++){
+    const h = document.createElement('span');
+    h.className = 'heart-float';
+    h.textContent = symbols[Math.floor(Math.random()*symbols.length)];
+    h.style.left = Math.random()*100 + 'vw';
+    h.style.bottom = '-2rem';
+    h.style.fontSize = (.8 + Math.random()*1.2) + 'rem';
+    h.style.animationDelay = (Math.random()*6) + 's';
+    h.style.animationDuration = (5 + Math.random()*5) + 's';
+    container.appendChild(h);
+  }
+
+  // Lightbox
+  function openLightbox(src){
+    document.getElementById('lb-img').src = src;
+    document.getElementById('lightbox').classList.add('active');
+  }
+  function closeLightbox(){
+    document.getElementById('lightbox').classList.remove('active');
+  }
+  document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox(); });
+</script>
+</body>
+</html>
