@@ -1,824 +1,1069 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bento Cake & Cupcakes Maison – Lyon</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@600;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --rose-pale:    #fce4ec;
-      --rose-doux:    #f8bbd0;
-      --rose-vif:     #e91e8c;
-      --rose-chaud:   #d81b60;
-      --violet:       #9c27b0;
-      --violet-clair: #e1bee7;
-      --bordeaux:     #3b0a24;
-      --creme:        #fff8f9;
-      --blanc:        #ffffff;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bento Cake & Cupcakes Maison - Lyon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --rose-pale: #fce4ec;
+            --rose-medium: #f8bbd0;
+            --rose-fonce: #f48fb1;
+            --rose-vif: #ec407a;
+            --rose-profond: #c2185b;
+            --blanc-creme: #fff8f0;
+            --brun-chocolat: #5d4037;
+            --brun-clair: #8d6e63;
+        }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fff0f3 0%, #fce4ec 50%, #f8bbd0 100%);
+            color: var(--brun-chocolat);
+            overflow-x: hidden;
+        }
 
-    body {
-      font-family: 'Jost', sans-serif;
-      background: var(--creme);
-      color: var(--bordeaux);
-      overflow-x: hidden;
-    }
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 30%, #e1bee7 60%, #ce93d8 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem 1rem 4rem;
-      position: relative;
-      overflow: hidden;
-    }
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 15% 20%, rgba(233,30,140,.15) 0%, transparent 45%),
-        radial-gradient(circle at 85% 80%, rgba(156,39,176,.18) 0%, transparent 45%);
-      pointer-events: none;
-    }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-    /* floating hearts */
-    .hearts-bg {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-    .heart-float {
-      position: absolute;
-      font-size: 1.4rem;
-      opacity: 0;
-      animation: floatUp 6s ease-in-out infinite;
-    }
-    @keyframes floatUp {
-      0%   { opacity: 0; transform: translateY(0) scale(.8) rotate(-10deg); }
-      20%  { opacity: .6; }
-      100% { opacity: 0; transform: translateY(-80vh) scale(1.2) rotate(15deg); }
-    }
+        @keyframes ribbonWave {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
 
-    .logo-wrap {
-      width: min(240px, 65vw);
-      height: min(240px, 65vw);
-      border-radius: 50%;
-      overflow: hidden;
-      box-shadow: 0 8px 40px rgba(233,30,140,.35);
-      border: 4px solid rgba(255,255,255,.6);
-      animation: fadeDown .9s ease both;
-    }
-    .logo-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center center;
-    }
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
 
-    .hero-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.4rem, 8vw, 4.2rem);
-      font-weight: 700;
-      color: var(--bordeaux);
-      margin-top: 1.4rem;
-      line-height: 1.15;
-      animation: fadeDown .9s .2s ease both;
-    }
-    .hero-title span {
-      color: var(--rose-vif);
-      font-style: italic;
-    }
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
 
-    .hero-sub {
-      font-family: 'Dancing Script', cursive;
-      font-size: clamp(1.2rem, 4vw, 1.9rem);
-      color: var(--violet);
-      margin-top: .4rem;
-      animation: fadeDown .9s .4s ease both;
-    }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-    .hero-tagline {
-      margin-top: 1.2rem;
-      font-size: .95rem;
-      font-weight: 500;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--bordeaux);
-      opacity: .75;
-      animation: fadeDown .9s .6s ease both;
-    }
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--rose-pale) 0%, var(--rose-medium) 100%);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(236, 64, 122, 0.15);
+        }
 
-    .hero-cta {
-      margin-top: 2.2rem;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      animation: fadeDown .9s .8s ease both;
-    }
-    .btn {
-      padding: .85rem 2rem;
-      border-radius: 60px;
-      font-family: 'Jost', sans-serif;
-      font-size: .95rem;
-      font-weight: 500;
-      text-decoration: none;
-      transition: transform .2s, box-shadow .2s;
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-    }
-    .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(233,30,140,.35); }
-    .btn-primary {
-      background: linear-gradient(135deg, var(--rose-vif), var(--violet));
-      color: #fff;
-      box-shadow: 0 4px 20px rgba(233,30,140,.4);
-    }
-    .btn-outline {
-      background: rgba(255,255,255,.7);
-      color: var(--bordeaux);
-      border: 1.5px solid var(--rose-vif);
-      backdrop-filter: blur(8px);
-    }
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+        }
 
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-18px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--rose-profond);
+            text-decoration: none;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    /* ── WAVE ── */
-    .wave { line-height: 0; }
-    .wave svg { display: block; width: 100%; }
+        .logo i {
+            color: var(--rose-vif);
+            font-size: 1.5rem;
+        }
 
-    /* ── SECTION BASE ── */
-    section { padding: 5rem 1.5rem; }
-    .container { max-width: 1100px; margin: 0 auto; }
-    .section-label {
-      text-align: center;
-      font-size: .75rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--violet);
-      font-weight: 500;
-    }
-    .section-title {
-      text-align: center;
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 5vw, 2.8rem);
-      color: var(--bordeaux);
-      margin-top: .4rem;
-    }
-    .section-title em {
-      color: var(--rose-vif);
-      font-style: italic;
-    }
-    .divider {
-      width: 60px;
-      height: 3px;
-      background: linear-gradient(90deg, var(--rose-vif), var(--violet));
-      border-radius: 4px;
-      margin: 1rem auto 3rem;
-    }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
 
-    /* ── PRODUITS ── */
-    .produits-bg {
-      background: #fff;
-    }
-    .produits-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 1rem;
-    }
-    .produit-card {
-      background: linear-gradient(160deg, var(--rose-pale), var(--violet-clair));
-      border-radius: 24px;
-      padding: 2.4rem 2rem;
-      position: relative;
-      overflow: hidden;
-      transition: transform .3s, box-shadow .3s;
-    }
-    .produit-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 16px 48px rgba(233,30,140,.2);
-    }
-    .produit-card::before {
-      content: '';
-      position: absolute;
-      top: -30px; right: -30px;
-      width: 100px; height: 100px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.3);
-    }
-    .produit-icon { font-size: 2.4rem; margin-bottom: 1rem; }
-    .produit-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      color: var(--bordeaux);
-    }
-    .produit-flavors {
-      list-style: none;
-      margin-top: 1rem;
-    }
-    .produit-flavors li {
-      padding: .35rem 0;
-      font-size: .92rem;
-      display: flex;
-      align-items: center;
-      gap: .5rem;
-      color: var(--bordeaux);
-    }
-    .produit-flavors li::before {
-      content: '♥';
-      color: var(--rose-vif);
-      font-size: .75rem;
-      flex-shrink: 0;
-    }
-    .prix-badge {
-      margin-top: 1.6rem;
-      display: inline-flex;
-      align-items: baseline;
-      gap: .3rem;
-      background: linear-gradient(135deg, var(--rose-vif), var(--violet));
-      color: #fff;
-      padding: .6rem 1.4rem;
-      border-radius: 50px;
-    }
-    .prix-badge .montant {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-weight: 700;
-    }
-    .prix-badge .label-prix { font-size: .8rem; opacity: .85; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--brun-chocolat);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
 
-    /* ── PERSONNALISATION ── */
-    .perso-bg {
-      background: linear-gradient(135deg, #fce4ec 0%, #e1bee7 100%);
-    }
-    .perso-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1rem;
-    }
-    .perso-card {
-      background: rgba(255,255,255,.6);
-      backdrop-filter: blur(12px);
-      border-radius: 20px;
-      padding: 2rem 1.5rem;
-      text-align: center;
-      border: 1px solid rgba(233,30,140,.2);
-      transition: background .3s, transform .3s;
-    }
-    .perso-card:hover { background: rgba(255,255,255,.85); transform: scale(1.04); }
-    .perso-card .icon { font-size: 2.2rem; margin-bottom: .8rem; }
-    .perso-card h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--bordeaux); }
-    .perso-card p { font-size: .85rem; color: var(--bordeaux); opacity: .7; margin-top: .3rem; }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--rose-vif);
+            transition: width 0.3s ease;
+        }
 
-    /* ── GALERIE CAROUSEL ── */
-    .galerie-bg { background: #fff; }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
 
-    .carousel-wrapper {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-      border-radius: 24px;
-      touch-action: pan-y;
-    }
-    .carousel-track {
-      display: flex;
-      flex-wrap: nowrap;
-      transition: transform .5s cubic-bezier(.4,0,.2,1);
-      will-change: transform;
-      width: 100%;
-    }
-    .carousel-slide {
-      flex: 0 0 100%;
-      width: 100%;
-      position: relative;
-      height: 90vw;
-      cursor: pointer;
-      overflow: hidden;
-      border-radius: 24px;
-      background: var(--rose-pale);
-    }
-    @media(min-width: 600px) {
-      .carousel-slide {
-        height: 55vw;
-        max-height: 600px;
-      }
-    }
-    .carousel-slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center center;
-      display: block;
-      transition: transform .4s;
-    }
-    .carousel-slide:hover img { transform: scale(1.02); }
-    .carousel-slide .overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(59,10,36,.55), transparent 55%);
-      display: flex;
-      align-items: flex-end;
-      padding: 1.5rem;
-      opacity: 0;
-      transition: opacity .3s;
-    }
-    .carousel-slide:hover .overlay { opacity: 1; }
-    .overlay span {
-      color: #fff;
-      font-family: 'Dancing Script', cursive;
-      font-size: 1.4rem;
-    }
+        .nav-links a:hover {
+            color: var(--rose-vif);
+        }
 
-    /* boutons nav */
-    .carousel-btn {
-      position: absolute;
-      top: 50%; transform: translateY(-50%);
-      background: rgba(255,255,255,.75);
-      backdrop-filter: blur(8px);
-      border: none;
-      width: 48px; height: 48px;
-      border-radius: 50%;
-      font-size: 1.2rem;
-      cursor: pointer;
-      z-index: 10;
-      box-shadow: 0 4px 16px rgba(0,0,0,.15);
-      transition: background .2s, transform .2s;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .carousel-btn:hover { background: #fff; transform: translateY(-50%) scale(1.1); }
-    .carousel-prev { left: 1rem; }
-    .carousel-next { right: 1rem; }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--rose-profond);
+            cursor: pointer;
+        }
 
-    /* dots */
-    .carousel-dots {
-      display: flex;
-      justify-content: center;
-      gap: .6rem;
-      margin-top: 1.2rem;
-    }
-    .dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: var(--rose-doux);
-      cursor: pointer;
-      transition: background .3s, transform .3s;
-      border: none;
-    }
-    .dot.active {
-      background: var(--rose-vif);
-      transform: scale(1.3);
-    }
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 30px 80px;
+            position: relative;
+            overflow: hidden;
+        }
 
-    /* ── COMMANDE / LIVRAISON ── */
-    .infos-bg { background: linear-gradient(135deg, #fce4ec, #e1bee7); }
-    .infos-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-    }
-    .info-card {
-      background: rgba(255,255,255,.65);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      padding: 2rem 1.5rem;
-      text-align: center;
-      border: 1px solid rgba(255,255,255,.8);
-    }
-    .info-card .icon { font-size: 2.2rem; }
-    .info-card h3 { font-family: 'Playfair Display', serif; font-size: 1rem; margin: .6rem 0 .3rem; color: var(--bordeaux); }
-    .info-card p { font-size: .88rem; color: var(--bordeaux); opacity: .75; line-height: 1.5; }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(248,187,208,0.3) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
 
-    /* ── CONTACT ── */
-    .contact-bg { background: #fff; }
-    .contact-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.2rem;
-      justify-content: center;
-      margin-top: 1rem;
-    }
-    .contact-card {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1.2rem 2rem;
-      border-radius: 60px;
-      text-decoration: none;
-      color: #fff;
-      font-weight: 500;
-      font-size: .95rem;
-      transition: transform .2s, box-shadow .2s;
-    }
-    .contact-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,.2); }
-    .contact-card .cicon { font-size: 1.6rem; }
-    .cc-insta   { background: linear-gradient(135deg,#f9ce34,#ee2a7b,#6228d7); }
-    .cc-whatsapp{ background: #25D366; }
-    .cc-snapchat{ background: #FFFC00; color: #000; }
-    .cc-tiktok  { background: #010101; }
-    .cc-phone   { background: linear-gradient(135deg, var(--rose-vif), var(--violet)); }
+        .hero-content {
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
 
-    /* ── FOOTER ── */
-    footer {
-      background: var(--bordeaux);
-      color: rgba(255,255,255,.7);
-      text-align: center;
-      padding: 2.5rem 1rem;
-      font-size: .85rem;
-    }
-    footer strong { color: var(--rose-doux); }
-    footer .heart { color: var(--rose-vif); }
+        .hero-text {
+            animation: fadeInUp 1s ease-out;
+        }
 
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: .9rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      backdrop-filter: blur(16px);
-      background: rgba(252,228,236,.75);
-      border-bottom: 1px solid rgba(233,30,140,.12);
-      transition: background .3s;
-    }
-    .nav-brand {
-      font-family: 'Dancing Script', cursive;
-      font-size: 1.3rem;
-      color: var(--bordeaux);
-      text-decoration: none;
-    }
-    .nav-links {
-      display: flex;
-      gap: 1.8rem;
-      list-style: none;
-    }
-    .nav-links a {
-      font-size: .88rem;
-      font-weight: 500;
-      color: var(--bordeaux);
-      text-decoration: none;
-      letter-spacing: .05em;
-      transition: color .2s;
-    }
-    .nav-links a:hover { color: var(--rose-vif); }
-    @media(max-width:600px){
-      .nav-links { display: none; }
-    }
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--rose-vif), var(--rose-fonce));
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(236, 64, 122, 0.3);
+        }
 
-    /* scrolling ribbon */
-    .ribbon {
-      background: linear-gradient(90deg, var(--rose-vif), var(--violet), var(--rose-vif));
-      background-size: 200%;
-      animation: ribbonMove 4s linear infinite;
-      color: #fff;
-      font-size: .8rem;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      padding: .5rem;
-      text-align: center;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-    @keyframes ribbonMove { 0%{background-position:0%} 100%{background-position:200%} }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--brun-chocolat);
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
 
-    /* lightbox */
-    .lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.85);
-      z-index: 999;
-      align-items: center;
-      justify-content: center;
-    }
-    .lightbox.active { display: flex; }
-    .lightbox img {
-      max-width: 90vw;
-      max-height: 90vh;
-      border-radius: 16px;
-      object-fit: contain;
-    }
-    .lightbox-close {
-      position: absolute;
-      top: 1.5rem; right: 1.5rem;
-      font-size: 2rem;
-      color: #fff;
-      cursor: pointer;
-      background: none;
-      border: none;
-      line-height: 1;
-    }
-  </style>
+        .hero h1 span {
+            color: var(--rose-vif);
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+        }
+
+        .hero-subtitle {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: var(--rose-fonce);
+            margin-bottom: 20px;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--brun-clair);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--rose-vif), var(--rose-fonce));
+            color: white;
+            box-shadow: 0 6px 20px rgba(236, 64, 122, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(236, 64, 122, 0.5);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--rose-vif);
+            border: 2px solid var(--rose-vif);
+        }
+
+        .btn-secondary:hover {
+            background: var(--rose-vif);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            position: relative;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(236, 64, 122, 0.2);
+            border: 5px solid white;
+        }
+
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            color: var(--rose-fonce);
+            opacity: 0.6;
+            animation: sparkle 3s ease-in-out infinite;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--brun-chocolat);
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: var(--rose-fonce);
+        }
+
+        .divider {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--rose-pale), var(--rose-vif), var(--rose-pale));
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        /* Products */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(236, 64, 122, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(236, 64, 122, 0.2);
+        }
+
+        .product-image {
+            height: 280px;
+            background: linear-gradient(135deg, var(--rose-pale), var(--rose-medium));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--rose-vif);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .product-info {
+            padding: 30px;
+        }
+
+        .product-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--brun-chocolat);
+            margin-bottom: 10px;
+        }
+
+        .product-info p {
+            color: var(--brun-clair);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .flavors {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .flavor-tag {
+            background: var(--rose-pale);
+            color: var(--rose-profond);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--rose-vif);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .price-note {
+            font-size: 0.85rem;
+            color: var(--brun-clair);
+            margin-top: 5px;
+        }
+
+        /* Gallery */
+        .gallery {
+            background: linear-gradient(135deg, var(--blanc-creme), var(--rose-pale));
+            padding: 80px 30px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.15);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(194, 24, 89, 0.8));
+            padding: 30px 20px 20px;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h4 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+        }
+
+        /* Personalization */
+        .personalization {
+            background: white;
+            border-radius: 30px;
+            padding: 60px;
+            box-shadow: 0 15px 50px rgba(236, 64, 122, 0.1);
+            margin: 40px auto;
+            max-width: 1000px;
+        }
+
+        .personalization-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .personalization-item {
+            text-align: center;
+            padding: 30px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--rose-pale), var(--blanc-creme));
+            transition: all 0.3s ease;
+        }
+
+        .personalization-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(236, 64, 122, 0.15);
+        }
+
+        .personalization-item i {
+            font-size: 2.5rem;
+            color: var(--rose-vif);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .personalization-item h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--brun-chocolat);
+            margin-bottom: 10px;
+        }
+
+        .personalization-item p {
+            font-size: 0.9rem;
+            color: var(--brun-clair);
+        }
+
+        /* Order Info */
+        .order-info {
+            background: linear-gradient(135deg, var(--rose-vif), var(--rose-fonce));
+            color: white;
+            border-radius: 30px;
+            padding: 60px;
+            margin: 40px auto;
+            max-width: 1000px;
+            text-align: center;
+        }
+
+        .order-info h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        .order-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .order-item {
+            background: rgba(255,255,255,0.2);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .order-item i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .order-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .order-item p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Contact */
+        .contact-section {
+            text-align: center;
+            padding: 80px 30px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--brun-chocolat);
+            transition: all 0.3s ease;
+            padding: 20px;
+            border-radius: 20px;
+            background: white;
+            box-shadow: 0 5px 20px rgba(236, 64, 122, 0.1);
+            min-width: 140px;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(236, 64, 122, 0.2);
+            color: var(--rose-vif);
+        }
+
+        .social-link i {
+            font-size: 2rem;
+        }
+
+        .social-link span {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .social-link small {
+            font-size: 0.75rem;
+            color: var(--brun-clair);
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #25D366;
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--brun-chocolat);
+            color: var(--rose-pale);
+            text-align: center;
+            padding: 40px 30px;
+        }
+
+        footer p {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        footer .heart-beat {
+            display: inline-block;
+            animation: heartBeat 1.5s ease-in-out infinite;
+            color: var(--rose-vif);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--rose-pale);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero h1 span {
+                font-size: 3rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .personalization-grid,
+            .order-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .personalization {
+                padding: 30px;
+            }
+
+            .order-info {
+                padding: 40px 20px;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--rose-pale);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--rose-fonce);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--rose-vif);
+        }
+    </style>
 </head>
 <body>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <button class="lightbox-close">✕</button>
-  <img id="lb-img" src="" alt="">
-</div>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#" class="logo">
+                <i class="fas fa-heart"></i>
+                Bento Cake & Cupcakes
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#produits">Nos Gâteaux</a></li>
+                <li><a href="#galerie">Galerie</a></li>
+                <li><a href="#personnalisation">Personnalisation</a></li>
+                <li><a href="#commande">Commander</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
 
-<!-- NAV -->
-<nav>
-  <a class="nav-brand" href="#">🎂 Bento Cake & Cupcakes</a>
-  <ul class="nav-links">
-    <li><a href="#produits">Nos Produits</a></li>
-    <li><a href="#galerie">Galerie</a></li>
-    <li><a href="#commande">Commander</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
-
-<!-- RIBBON -->
-<div class="ribbon" style="margin-top:56px;">
-  ♥ Fait maison avec amour &nbsp;✦&nbsp; Bento Cake 15€ – Offre de lancement &nbsp;✦&nbsp; Cupcakes boîte 6 : 18€ &nbsp;✦&nbsp; Commande 24/48h à l'avance &nbsp;✦&nbsp; Livraison Lyon &nbsp;✦&nbsp;
-</div>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hearts-bg" id="hearts"></div>
-
-  <div class="logo-wrap">
-    <img class="logo-img" src="logo.jpeg" alt="Logo Bento Cake & Cupcakes Maison">
-
-  </div>
-
-  <h1 class="hero-title">Bento Cake<br><span>& Cupcakes</span></h1>
-  <p class="hero-sub">Maison ♡</p>
-  <p class="hero-tagline">Des gâteaux personnalisés pour toutes vos occasions</p>
-
-  <div class="hero-cta">
-    <a href="#commande" class="btn btn-primary">🎀 Commander</a>
-    <a href="#galerie" class="btn btn-outline">✨ Voir la galerie</a>
-  </div>
-</section>
-
-<div class="wave">
-  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-    <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#ffffff"/>
-  </svg>
-</div>
-
-<!-- PRODUITS -->
-<section class="produits-bg" id="produits">
-  <div class="container">
-    <p class="section-label">Notre menu</p>
-    <h2 class="section-title">Nos <em>créations</em></h2>
-    <div class="divider"></div>
-
-    <div class="produits-grid">
-      <!-- BENTO CAKE -->
-      <div class="produit-card">
-        <div class="produit-icon">🎂</div>
-        <h3 class="produit-name">Bento Cake</h3>
-        <ul class="produit-flavors">
-          <li>Chocolat</li>
-          <li>Fraise</li>
-          <li>Framboise ou Fruits rouges</li>
-          <li>Exotique (Mangue, Passion)</li>
-        </ul>
-        <div class="prix-badge">
-          <span class="montant">15€</span>
-          <span class="label-prix">offre de lancement</span>
+    <!-- Hero Section -->
+    <section class="hero" id="accueil">
+        <div class="floating-hearts">
+            <i class="fas fa-heart heart" style="top: 10%; left: 10%; font-size: 20px; animation-delay: 0s;"></i>
+            <i class="fas fa-heart heart" style="top: 20%; right: 15%; font-size: 15px; animation-delay: 1s;"></i>
+            <i class="fas fa-heart heart" style="bottom: 30%; left: 20%; font-size: 25px; animation-delay: 2s;"></i>
+            <i class="fas fa-heart heart" style="bottom: 20%; right: 10%; font-size: 18px; animation-delay: 0.5s;"></i>
         </div>
-      </div>
-
-      <!-- CUPCAKES -->
-      <div class="produit-card">
-        <div class="produit-icon">🧁</div>
-        <h3 class="produit-name">Cupcakes</h3>
-        <ul class="produit-flavors">
-          <li>Chocolat</li>
-          <li>Vanille</li>
-          <li>Fruits rouges</li>
-          <li>Caramel (Spéculos)</li>
-        </ul>
-        <div style="margin-top:1.6rem; display:flex; gap:.8rem; flex-wrap:wrap;">
-          <div class="prix-badge">
-            <span class="montant">18€</span>
-            <span class="label-prix">boîte de 6</span>
-          </div>
-          <div class="prix-badge" style="background:linear-gradient(135deg,#9c27b0,#e91e8c)">
-            <span class="montant">30€</span>
-            <span class="label-prix">boîte de 12</span>
-          </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">✨ Fait Maison Avec Amour ✨</div>
+                <h1>Bento Cake <span>& Cupcakes</span></h1>
+                <p class="hero-subtitle">Des gâteaux personnalisés pour toutes vos occasions</p>
+                <p class="hero-desc">
+                    Découvrez nos délicieux bento cakes et cupcakes entièrement faits maison à Lyon. 
+                    Personnalisez votre gâteau avec prénom, message, couleurs et thème au choix. 
+                    Parfait pour les anniversaires, surprises et moments magiques !
+                </p>
+                <div class="hero-buttons">
+                    <a href="#commande" class="btn btn-primary">
+                        <i class="fas fa-gift"></i> Commander
+                    </a>
+                    <a href="#produits" class="btn btn-secondary">
+                        <i class="fas fa-eye"></i> Découvrir
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500&h=500&fit=crop" alt="Bento Cake délicieux">
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- PERSONNALISATION -->
-<section class="perso-bg" id="perso">
-  <div class="container">
-    <p class="section-label">Sur mesure</p>
-    <h2 class="section-title">La <em>personnalisation</em></h2>
-    <div class="divider"></div>
-
-    <div class="perso-grid">
-      <div class="perso-card">
-        <div class="icon">💌</div>
-        <h3>Prénom / Message</h3>
-        <p>Un mot doux écrit avec soin</p>
-      </div>
-      <div class="perso-card">
-        <div class="icon">🎨</div>
-        <h3>Couleurs au choix</h3>
-        <p>Assortis à votre événement</p>
-      </div>
-      <div class="perso-card">
-        <div class="icon">🎁</div>
-        <h3>Thème ciblé</h3>
-        <p>Anniversaire, mariage, naissance…</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- GALERIE -->
-<section class="galerie-bg" id="galerie">
-  <div class="container">
-    <p class="section-label">Nos réalisations</p>
-    <h2 class="section-title">La <em>galerie</em></h2>
-    <div class="divider"></div>
-
-    <div class="carousel-wrapper">
-      <button class="carousel-btn carousel-prev" onclick="moveCarousel(-1)">&#8592;</button>
-      <button class="carousel-btn carousel-next" onclick="moveCarousel(1)">&#8594;</button>
-
-      <div class="carousel-track" id="carouselTrack">
-        <div class="carousel-slide" onclick="openLightbox('WhatsApp Image 2026-04-30 at 18.40.03.jpeg')">
-          <img src="WhatsApp Image 2026-04-30 at 18.40.03.jpeg" alt="Bento cake Happy Birthday">
-          <div class="overlay"><span>Bento Cake ♥</span></div>
+    <!-- Products Section -->
+    <section id="produits">
+        <div class="section-header animate-on-scroll">
+            <h2>Nos Délices</h2>
+            <div class="divider"></div>
+            <p>Choisissez votre gourmandise préférée</p>
         </div>
-        <div class="carousel-slide" onclick="openLightbox('WhatsApp Image 2026-04-30 at 18.40.04.jpeg')">
-          <img src="WhatsApp Image 2026-04-30 at 18.40.04.jpeg" alt="Bento cake créations">
-          <div class="overlay"><span>Créations maison ♥</span></div>
+
+        <div class="products-grid">
+            <!-- Bento Cake -->
+            <div class="product-card animate-on-scroll">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&h=300&fit=crop" alt="Bento Cake">
+                    <span class="product-badge">Offre de Lancement</span>
+                </div>
+                <div class="product-info">
+                    <h3><i class="fas fa-birthday-cake" style="color: var(--rose-vif);"></i> Bento Cake</h3>
+                    <p>Le petit gâteau tendance dans sa boîte bento, parfait pour surprendre vos proches avec un message personnalisé.</p>
+                    <div class="flavors">
+                        <span class="flavor-tag">🍫 Chocolat</span>
+                        <span class="flavor-tag">🍓 Fraise</span>
+                        <span class="flavor-tag">🫐 Framboise</span>
+                        <span class="flavor-tag">🥭 Exotique</span>
+                    </div>
+                    <div class="price">15 €</div>
+                    <p class="price-note">Offre de lancement limitée</p>
+                </div>
+            </div>
+
+            <!-- Cupcakes x6 -->
+            <div class="product-card animate-on-scroll">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?w=400&h=300&fit=crop" alt="Cupcakes">
+                </div>
+                <div class="product-info">
+                    <h3><i class="fas fa-cookie" style="color: var(--rose-vif);"></i> Cupcakes x6</h3>
+                    <p>Une boîte de 6 cupcakes décorés avec amour, idéale pour partager un moment sucré entre amis ou en famille.</p>
+                    <div class="flavors">
+                        <span class="flavor-tag">🍫 Chocolat</span>
+                        <span class="flavor-tag">🍦 Vanille</span>
+                        <span class="flavor-tag">🫐 Fruits Rouges</span>
+                        <span class="flavor-tag">🍯 Caramel</span>
+                    </div>
+                    <div class="price">18 €</div>
+                    <p class="price-note">Offre de lancement</p>
+                </div>
+            </div>
+
+            <!-- Cupcakes x12 -->
+            <div class="product-card animate-on-scroll">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1587668178277-295251f900ce?w=400&h=300&fit=crop" alt="Cupcakes Box">
+                </div>
+                <div class="product-info">
+                    <h3><i class="fas fa-cookie-bite" style="color: var(--rose-vif);"></i> Cupcakes x12</h3>
+                    <p>La grande boîte de 12 cupcakes pour les grandes occasions et les gros appétits ! Mix de saveurs possible.</p>
+                    <div class="flavors">
+                        <span class="flavor-tag">🍫 Chocolat</span>
+                        <span class="flavor-tag">🍦 Vanille</span>
+                        <span class="flavor-tag">🫐 Fruits Rouges</span>
+                        <span class="flavor-tag">🍪 Spéculos</span>
+                    </div>
+                    <div class="price">30 €</div>
+                    <p class="price-note">Offre de lancement</p>
+                </div>
+            </div>
         </div>
-        <div class="carousel-slide" onclick="openLightbox('WhatsApp Image 2026-04-30 at 18.40.04 (1).jpeg')">
-          <img src="WhatsApp Image 2026-04-30 at 18.40.04 (1).jpeg" alt="Bento cake décoré">
-          <div class="overlay"><span>Fait avec amour ♥</span></div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="galerie">
+        <div class="section-header animate-on-scroll">
+            <h2>Notre Galerie</h2>
+            <div class="divider"></div>
+            <p>Des créations uniques et pleines d'amour</p>
         </div>
-        <div class="carousel-slide" onclick="openLightbox('WhatsApp Image 2026-04-30 at 18.40.04 (2).jpeg')">
-          <img src="WhatsApp Image 2026-04-30 at 18.40.04 (2).jpeg" alt="Cupcakes artisanaux">
-          <div class="overlay"><span>Cupcakes ♥</span></div>
+
+        <div class="gallery-grid">
+            <div class="gallery-item animate-on-scroll">
+                <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=400&h=400&fit=crop" alt="Gâteau anniversaire">
+                <div class="gallery-overlay">
+                    <h4>Happy Birthday 20</h4>
+                    <p>Bento cake personnalisé</p>
+                </div>
+            </div>
+            <div class="gallery-item animate-on-scroll">
+                <img src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=400&h=400&fit=crop" alt="Gâteau romantique">
+                <div class="gallery-overlay">
+                    <h4>Pour Toi</h4>
+                    <p>Message d'amour</p>
+                </div>
+            </div>
+            <div class="gallery-item animate-on-scroll">
+                <img src="https://images.unsplash.com/photo-1519340333755-56e9c1d04579?w=400&h=400&fit=crop" alt="Cupcakes décorés">
+                <div class="gallery-overlay">
+                    <h4>Cupcakes Fruits Rouges</h4>
+                    <p>Boîte de 6</p>
+                </div>
+            </div>
+            <div class="gallery-item animate-on-scroll">
+                <img src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=400&h=400&fit=crop" alt="Gâteau coeur">
+                <div class="gallery-overlay">
+                    <h4>Happy Birthday 30</h4>
+                    <p>Design original</p>
+                </div>
+            </div>
+            <div class="gallery-item animate-on-scroll">
+                <img src="https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?w=400&h=400&fit=crop" alt="Gâteau pastel">
+                <div class="gallery-overlay">
+                    <h4>Style Pastel</h4>
+                    <p>Rubans et coeurs</p>
+                </div>
+            </div>
+            <div class="gallery-item animate-on-scroll">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=400&fit=crop" alt="Gâteau chocolat">
+                <div class="gallery-overlay">
+                    <h4>Chocolat Gourmand</h4>
+                    <p>Intense et délicieux</p>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
+    </section>
 
-    <div class="carousel-dots" id="carouselDots">
-      <button class="dot active" onclick="goToSlide(0)"></button>
-      <button class="dot" onclick="goToSlide(1)"></button>
-      <button class="dot" onclick="goToSlide(2)"></button>
-      <button class="dot" onclick="goToSlide(3)"></button>
-    </div>
-  </div>
-</section>
+    <!-- Personalization Section -->
+    <section id="personnalisation">
+        <div class="personalization animate-on-scroll">
+            <div class="section-header">
+                <h2>Personnalisation</h2>
+                <div class="divider"></div>
+                <p>Créez un gâteau unique qui vous ressemble</p>
+            </div>
 
-<!-- INFOS COMMANDE -->
-<section class="infos-bg" id="commande">
-  <div class="container">
-    <p class="section-label">Pratique</p>
-    <h2 class="section-title">Comment <em>commander</em> ?</h2>
-    <div class="divider"></div>
+            <div class="personalization-grid">
+                <div class="personalization-item">
+                    <i class="fas fa-heart"></i>
+                    <h4>Prénom / Message</h4>
+                    <p>Ajoutez le prénom de votre choix ou un message personnalisé sur le gâteau</p>
+                </div>
+                <div class="personalization-item">
+                    <i class="fas fa-palette"></i>
+                    <h4>Couleurs au Choix</h4>
+                    <p>Sélectionnez vos couleurs préférées pour le glaçage et la décoration</p>
+                </div>
+                <div class="personalization-item">
+                    <i class="fas fa-gift"></i>
+                    <h4>Thème Ciblé</h4>
+                    <p>Choisissez un thème spécifique : anniversaire, amour, félicitations...</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div class="infos-grid">
-      <div class="info-card">
-        <div class="icon">📅</div>
-        <h3>Sur commande</h3>
-        <p>24 à 48h à l'avance</p>
-      </div>
-      <div class="info-card">
-        <div class="icon">🤝</div>
-        <h3>Remise en main propre</h3>
-        <p>Disponible sur place</p>
-      </div>
-      <div class="info-card">
-        <div class="icon">🚗</div>
-        <h3>Livraison Lyon</h3>
-        <p>En supplément</p>
-      </div>
-      <div class="info-card">
-        <div class="icon">💬</div>
-        <h3>Contactez-nous</h3>
-        <p>WhatsApp ou réseaux sociaux</p>
-      </div>
-    </div>
+    <!-- Order Info -->
+    <section id="commande">
+        <div class="order-info animate-on-scroll">
+            <h2><i class="fas fa-shopping-bag"></i> Comment Commander ?</h2>
+            <div class="order-grid">
+                <div class="order-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h4>Sur Commande</h4>
+                    <p>24 à 48h à l'avance pour une préparation soignée</p>
+                </div>
+                <div class="order-item">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h4>Remise en Main Propre</h4>
+                    <p>Disponible sur place à Lyon</p>
+                </div>
+                <div class="order-item">
+                    <i class="fas fa-truck"></i>
+                    <h4>Livraison Lyon</h4>
+                    <p>En supplément selon la zone</p>
+                </div>
+            </div>
+            <a href="https://wa.me/33777707627" class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
+            </a>
+        </div>
+    </section>
 
-    <div style="text-align:center;margin-top:3rem;">
-      <a href="https://wa.me/33777707627" class="btn btn-primary" target="_blank">💬 Passer commande sur WhatsApp</a>
-    </div>
-  </div>
-</section>
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="section-header animate-on-scroll">
+            <h2>Contactez-Nous</h2>
+            <div class="divider"></div>
+            <p>Suivez-nous sur les réseaux pour découvrir nos dernières créations</p>
+        </div>
 
-<!-- CONTACT -->
-<section class="contact-bg" id="contact">
-  <div class="container">
-    <p class="section-label">Retrouvez-nous</p>
-    <h2 class="section-title">Nos <em>réseaux</em></h2>
-    <div class="divider"></div>
+        <div class="social-links">
+            <a href="https://instagram.com/bento.cakes.lyon" class="social-link" target="_blank">
+                <i class="fab fa-instagram" style="color: #E1306C;"></i>
+                <span>Instagram</span>
+                <small>@bento.cakes.lyon</small>
+            </a>
+            <a href="https://wa.me/33777707627" class="social-link" target="_blank">
+                <i class="fab fa-whatsapp" style="color: #25D366;"></i>
+                <span>WhatsApp</span>
+                <small>07 77 70 76 27</small>
+            </a>
+            <a href="https://www.snapchat.com/add/bentocakeslyon?share_id=CC101XR4SNmQzwyN_lAeSA&locale=fr_FR" class="social-link" target="_blank">
+                <i class="fab fa-snapchat" style="color: #FFFC00;"></i>
+                <span>Snapchat</span>
+                <small>@bentocakeslyon</small>
+            </a>
+            <a href="https://www.tiktok.com/@bento.cakes.lyon" class="social-link" target="_blank">
+                <i class="fab fa-tiktok" style="color: #000;"></i>
+                <span>TikTok</span>
+                <small>@bento.cakes.lyon</small>
+            </a>
+        </div>
+    </section>
 
-    <div class="contact-grid">
-      <a href="https://www.instagram.com/bento.cakes.lyon" target="_blank" class="contact-card cc-insta">
-        <span class="cicon">📸</span> Instagram @bento.cakes.lyon
-      </a>
-      <a href="https://wa.me/33777707627" target="_blank" class="contact-card cc-whatsapp">
-        <span class="cicon">💬</span> WhatsApp 07 77 70 76 27
-      </a>
-      <a href="https://www.snapchat.com/add/bentocakeslyon?share_id=CC101XR4SNmQzwyN_lAeSA&locale=fr_FR" target="_blank" class="contact-card cc-snapchat">
-        <span class="cicon">👻</span> Snapchat bentocakeslyon
-      </a>
-      <a href="https://www.tiktok.com/@bento.cakes.lyon" target="_blank" class="contact-card cc-tiktok">
-        <span class="cicon">🎵</span> TikTok @bento.cakes.lyon
-      </a>
-      <a href="tel:+33777707627" class="contact-card cc-phone">
-        <span class="cicon">📞</span> 07 77 70 76 27
-      </a>
-    </div>
-  </div>
-</section>
+    <!-- Footer -->
+    <footer>
+        <p>Merci pour votre soutien <span class="heart-beat">💗</span> À très bientôt</p>
+        <p style="font-family: 'Poppins', sans-serif; font-size: 0.9rem; margin-top: 10px; opacity: 0.8;">
+            Bento Cake & Cupcakes Maison - Lyon
+        </p>
+    </footer>
 
-<!-- FOOTER -->
-<footer>
-  <p>Made with <span class="heart">♥</span> — <strong>Bento Cake & Cupcakes Maison</strong> · Lyon</p>
-  <p style="margin-top:.5rem;font-size:.78rem;">Fait maison avec amour · Gâteaux personnalisés pour toutes vos occasions</p>
-</footer>
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
 
-<script>
-  // Carousel
-  let current = 0;
-  const total = 4;
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    document.getElementById('navLinks').classList.remove('active');
+                }
+            });
+        });
 
-  function updateCarousel() {
-    document.getElementById('carouselTrack').style.transform = `translateX(-${current * 100}%)`;
-    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
-  }
+        // Scroll Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-  function moveCarousel(dir) {
-    current = (current + dir + total) % total;
-    updateCarousel();
-  }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
 
-  function goToSlide(i) {
-    current = i;
-    updateCarousel();
-  }
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
 
-  // Auto-play toutes les 4s
-  setInterval(() => moveCarousel(1), 4000);
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(252, 228, 236, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, var(--rose-pale) 0%, var(--rose-medium) 100%)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+    </script>
 
-  // Swipe tactile
-  let startX = 0;
-  const track = document.getElementById('carouselTrack');
-  track.addEventListener('touchstart', e => startX = e.touches[0].clientX);
-  track.addEventListener('touchend', e => {
-    const diff = startX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) moveCarousel(diff > 0 ? 1 : -1);
-  });
-
-  // Floating hearts
-  const container = document.getElementById('hearts');
-  const symbols = ['♥','♡','💕','🌸','✨'];
-  for(let i=0;i<18;i++){
-    const h = document.createElement('span');
-    h.className = 'heart-float';
-    h.textContent = symbols[Math.floor(Math.random()*symbols.length)];
-    h.style.left = Math.random()*100 + 'vw';
-    h.style.bottom = '-2rem';
-    h.style.fontSize = (.8 + Math.random()*1.2) + 'rem';
-    h.style.animationDelay = (Math.random()*6) + 's';
-    h.style.animationDuration = (5 + Math.random()*5) + 's';
-    container.appendChild(h);
-  }
-
-  // Lightbox
-  function openLightbox(src){
-    document.getElementById('lb-img').src = src;
-    document.getElementById('lightbox').classList.add('active');
-  }
-  function closeLightbox(){
-    document.getElementById('lightbox').classList.remove('active');
-  }
-  document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox(); });
-</script>
 </body>
 </html>
