@@ -288,43 +288,97 @@
     .perso-card h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--bordeaux); }
     .perso-card p { font-size: .85rem; color: var(--bordeaux); opacity: .7; margin-top: .3rem; }
 
-    /* ── GALERIE ── */
+    /* ── GALERIE CAROUSEL ── */
     .galerie-bg { background: #fff; }
-    .galerie-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1.2rem;
-    }
-    .galerie-item {
-      border-radius: 20px;
-      overflow: hidden;
+
+    .carousel-wrapper {
       position: relative;
-      aspect-ratio: 4/5;
-      cursor: pointer;
-      box-shadow: 0 4px 20px rgba(0,0,0,.1);
-      transition: transform .3s, box-shadow .3s;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 24px;
+      touch-action: pan-y;
     }
-    .galerie-item:hover { transform: scale(1.03); box-shadow: 0 12px 40px rgba(233,30,140,.25); }
-    .galerie-item img {
+    .carousel-track {
+      display: flex;
+      flex-wrap: nowrap;
+      transition: transform .5s cubic-bezier(.4,0,.2,1);
+      will-change: transform;
+      width: 100%;
+    }
+    .carousel-slide {
+      flex: 0 0 100%;
+      width: 100%;
+      position: relative;
+      aspect-ratio: 3/4;
+      cursor: pointer;
+      overflow: hidden;
+      border-radius: 24px;
+    }
+    @media(min-width:600px){
+      .carousel-slide { aspect-ratio: 16/9; }
+    }
+    .carousel-slide img {
       width: 100%; height: 100%;
       object-fit: cover;
       display: block;
+      transition: transform .4s;
     }
-    .galerie-item .overlay {
+    .carousel-slide:hover img { transform: scale(1.04); }
+    .carousel-slide .overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(59,10,36,.5), transparent);
-      opacity: 0;
-      transition: opacity .3s;
+      background: linear-gradient(to top, rgba(59,10,36,.55), transparent 55%);
       display: flex;
       align-items: flex-end;
-      padding: 1rem;
+      padding: 1.5rem;
+      opacity: 0;
+      transition: opacity .3s;
     }
-    .galerie-item:hover .overlay { opacity: 1; }
+    .carousel-slide:hover .overlay { opacity: 1; }
     .overlay span {
       color: #fff;
       font-family: 'Dancing Script', cursive;
+      font-size: 1.4rem;
+    }
+
+    /* boutons nav */
+    .carousel-btn {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,.75);
+      backdrop-filter: blur(8px);
+      border: none;
+      width: 48px; height: 48px;
+      border-radius: 50%;
       font-size: 1.2rem;
+      cursor: pointer;
+      z-index: 10;
+      box-shadow: 0 4px 16px rgba(0,0,0,.15);
+      transition: background .2s, transform .2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .carousel-btn:hover { background: #fff; transform: translateY(-50%) scale(1.1); }
+    .carousel-prev { left: 1rem; }
+    .carousel-next { right: 1rem; }
+
+    /* dots */
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: .6rem;
+      margin-top: 1.2rem;
+    }
+    .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--rose-doux);
+      cursor: pointer;
+      transition: background .3s, transform .3s;
+      border: none;
+    }
+    .dot.active {
+      background: var(--rose-vif);
+      transform: scale(1.3);
     }
 
     /* ── COMMANDE / LIVRAISON ── */
@@ -601,23 +655,35 @@
     <h2 class="section-title">La <em>galerie</em></h2>
     <div class="divider"></div>
 
-    <div class="galerie-grid">
-      <div class="galerie-item" onclick="openLightbox('WhatsApp Image 2026-04-30 at 18.40.03.jpeg')">
-        <img src="WhatsApp Image 2026-04-30 at 18.40.03.jpeg" alt="Bento cake Happy Birthday">
-        <div class="overlay"><span>Bento Cake ♥</span></div>
+    <div class="carousel-wrapper">
+      <button class="carousel-btn carousel-prev" onclick="moveCarousel(-1)">&#8592;</button>
+      <button class="carousel-btn carousel-next" onclick="moveCarousel(1)">&#8594;</button>
+
+      <div class="carousel-track" id="carouselTrack">
+        <div class="carousel-slide" onclick="openLightbox('WhatsApp Image 2026-04-30 at 18.40.03.jpeg')">
+          <img src="WhatsApp Image 2026-04-30 at 18.40.03.jpeg" alt="Bento cake Happy Birthday">
+          <div class="overlay"><span>Bento Cake ♥</span></div>
+        </div>
+        <div class="carousel-slide" onclick="openLightbox('WhatsApp Image 2026-04-30 at 18.40.04.jpeg')">
+          <img src="WhatsApp Image 2026-04-30 at 18.40.04.jpeg" alt="Bento cake créations">
+          <div class="overlay"><span>Créations maison ♥</span></div>
+        </div>
+        <div class="carousel-slide" onclick="openLightbox('WhatsApp Image 2026-04-30 at 18.40.04 (1).jpeg')">
+          <img src="WhatsApp Image 2026-04-30 at 18.40.04 (1).jpeg" alt="Bento cake décoré">
+          <div class="overlay"><span>Fait avec amour ♥</span></div>
+        </div>
+        <div class="carousel-slide" onclick="openLightbox('WhatsApp Image 2026-04-30 at 18.40.04 (2).jpeg')">
+          <img src="WhatsApp Image 2026-04-30 at 18.40.04 (2).jpeg" alt="Cupcakes artisanaux">
+          <div class="overlay"><span>Cupcakes ♥</span></div>
+        </div>
       </div>
-      <div class="galerie-item" onclick="openLightbox('WhatsApp Image 2026-04-30 at 18.40.04.jpeg')">
-        <img src="WhatsApp Image 2026-04-30 at 18.40.04.jpeg" alt="Bento cake créations">
-        <div class="overlay"><span>Créations maison ♥</span></div>
-      </div>
-      <div class="galerie-item" onclick="openLightbox('WhatsApp Image 2026-04-30 at 18.40.04 (1).jpeg')">
-        <img src="WhatsApp Image 2026-04-30 at 18.40.04 (1).jpeg" alt="Bento cake décoré">
-        <div class="overlay"><span>Fait avec amour ♥</span></div>
-      </div>
-      <div class="galerie-item" onclick="openLightbox('WhatsApp Image 2026-04-30 at 18.40.04 (2).jpeg')">
-        <img src="WhatsApp Image 2026-04-30 at 18.40.04 (2).jpeg" alt="Cupcakes artisanaux">
-        <div class="overlay"><span>Cupcakes ♥</span></div>
-      </div>
+    </div>
+
+    <div class="carousel-dots" id="carouselDots">
+      <button class="dot active" onclick="goToSlide(0)"></button>
+      <button class="dot" onclick="goToSlide(1)"></button>
+      <button class="dot" onclick="goToSlide(2)"></button>
+      <button class="dot" onclick="goToSlide(3)"></button>
     </div>
   </div>
 </section>
@@ -692,6 +758,37 @@
 </footer>
 
 <script>
+  // Carousel
+  let current = 0;
+  const total = 4;
+
+  function updateCarousel() {
+    document.getElementById('carouselTrack').style.transform = `translateX(-${current * 100}%)`;
+    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+
+  function moveCarousel(dir) {
+    current = (current + dir + total) % total;
+    updateCarousel();
+  }
+
+  function goToSlide(i) {
+    current = i;
+    updateCarousel();
+  }
+
+  // Auto-play toutes les 4s
+  setInterval(() => moveCarousel(1), 4000);
+
+  // Swipe tactile
+  let startX = 0;
+  const track = document.getElementById('carouselTrack');
+  track.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+  track.addEventListener('touchend', e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) moveCarousel(diff > 0 ? 1 : -1);
+  });
+
   // Floating hearts
   const container = document.getElementById('hearts');
   const symbols = ['♥','♡','💕','🌸','✨'];
